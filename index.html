@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semangat Kerja Novita!</title>
+    <style>
+        /* Pengaturan Dasar */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Latar belakang gradient yang modern */
+            background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; /* Mencegah scroll */
+        }
+
+        /* Container untuk Slide */
+        .slider-container {
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+            height: 400px;
+        }
+
+        /* Desain Kartu (Slide) */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 50px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px); /* Efek kaca (Glassmorphism) */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            
+            /* Animasi perpindahan (Slide & Fade) */
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.8s ease-in-out;
+            opacity: 0;
+            transform: translateX(100%) scale(0.9);
+            pointer-events: none;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Status Slide Aktif */
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            pointer-events: auto;
+        }
+
+        /* Status Slide Sebelumnya (Bergeser ke kiri) */
+        .slide.prev {
+            transform: translateX(-100%) scale(0.9);
+            opacity: 0;
+        }
+
+        /* Tipografi */
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            color: #00d2ff;
+        }
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #00d2ff;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+        }
+        .highlight {
+            color: #ff8a00;
+            font-weight: bold;
+        }
+
+        /* Desain Tombol */
+        .btn {
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(0, 210, 255, 0.3);
+            transition: all 0.3s ease 0s;
+            margin-top: 15px;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 20px rgba(0, 210, 255, 0.4);
+        }
+
+        /* Animasi mengambang untuk logo/icon */
+        .floating-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slider-container">
+        <!-- SLIDE 1 : Sampul / Pembuka -->
+        <div id="slide1" class="slide active">
+            <div class="floating-icon">👩‍💻</div>
+            <h1>Halo, Novita Ayu Sabekti!</h1>
+            <p>Ada pesan khusus nih buat kamu hari ini.</p>
+            <button class="btn" onclick="nextSlide()">Buka Pesan 💌</button>
+        </div>
+
+        <!-- SLIDE 2 : Isi Surat -->
+        <div id="slide2" class="slide">
+            <h2>Semangat Terus, Bu Admin! 🚀</h2>
+            <p>
+                Aku tahu kerjaan sebagai <span class="highlight">IT Administrator</span> itu nggak gampang. 
+                Pasti capek harus <i>ngurusin data</i> bikin laporan, dan bantuin <i>user</i> yang kadang keluhannya ajaib-ajaib.
+            </p>
+            <p>
+                Tapi ingat ya, tanpa dedikasi kamu, sistem di kantor pasti bakal kacau balau. Kamu itu pahlawan di balik layar! 
+            </p>
+            <p>
+                Jangan lupa buat sesekali <i>stretching</i>, minum air putih yang banyak, dan istirahatkan mata dari layar monitor. 
+                Kamu hebat, tetap semangat kerjanya ya! ✨
+            </p>
+            <button class="btn" onclick="prevSlide()">Tutup Surat 🔙</button>
+        </div>
+    </div>
+
+    <!-- JavaScript untuk kontrol animasi Slide -->
+    <script>
+        function nextSlide() {
+            // Hapus class active di slide 1, tambahkan prev
+            document.getElementById('slide1').classList.remove('active');
+            document.getElementById('slide1').classList.add('prev');
+            
+            // Tampilkan slide 2
+            document.getElementById('slide2').classList.add('active');
+        }
+
+        function prevSlide() {
+            // Sembunyikan slide 2
+            document.getElementById('slide2').classList.remove('active');
+            
+            // Tampilkan kembali slide 1
+            document.getElementById('slide1').classList.remove('prev');
+            document.getElementById('slide1').classList.add('active');
+        }
+    </script>
+</body>
+</html>
